@@ -9,6 +9,8 @@ services:
       - POSTGRES_DB=findme-predialx
       - POSTGRES_USER=findme-admin
       - POSTGRES_PASSWORD=findme-admin
+    volumes:
+      - .docker/postgres-data:/var/lib/postgresql/data
     networks:
       - network
 
