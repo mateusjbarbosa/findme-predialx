@@ -9,8 +9,6 @@ services:
       - POSTGRES_DB=findme-predialx
       - POSTGRES_USER=findme-admin
       - POSTGRES_PASSWORD=findme-admin
-    volumes:
-      - ./.docker/data:/var/lib/postgresql/data
     networks:
       - network
 
@@ -22,6 +20,8 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@findme.id
       - PGADMIN_DEFAULT_PASSWORD=admin123
+    volumes:
+      - .docker/pgadmin-data:/var/lib/pgadmin/storage
     networks:
       - network
     depends_on:
