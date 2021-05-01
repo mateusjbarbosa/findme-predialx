@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=findme-predialx
+      - POSTGRES_USER=findme-admin
+      - POSTGRES_PASSWORD=findme-admin
+    volumes:
+      - ./.docker/data:/var/lib/postgresql/data
+    networks:
+      - network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - 8081:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@findme.id
+      - PGADMIN_DEFAULT_PASSWORD=admin123
+    networks:
+      - network
+    depends_on:
+      - postgres
+
+  keycloak:
+    image: jboss/keycloak
+    container_name: keycloak
+    ports:
+      - 8080:8080
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=postgres
+      - DB_DATABASE=findme-predialx
+      - DB_USER=findme-admin
+      - DB_PASSWORD=findme-admin
+    networks:
+      - network
+    depends_on:
+      - postgres
+
+  backend:
+    image: node:14.16.1-alpine3.13
+    container_name: backend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./findme-predialx-backend:/home/node/app
+    working_dir: /home/node/app
+    command: yarn start:dev
+    networks:
+      - network
+    depends_on:
+      - keycloak
+
+networks:
+  network:
+    driver: bridge
