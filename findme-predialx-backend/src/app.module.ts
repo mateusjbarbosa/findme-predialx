@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 
-import KeycloakModule, {AuthGuard} from 'nestjs-keycloak-admin';
+import KeycloakModule, { AuthGuard } from 'nestjs-keycloak-admin';
 
 // this.keycloakService.connect.grantManager.obtainDirectly(username, pass);
 
@@ -19,9 +19,9 @@ import KeycloakModule, {AuthGuard} from 'nestjs-keycloak-admin';
           clientSecret: keycloakConfig['credentials']['secret'],
         };
       },
-    })
+    }),
   ],
   controllers: [],
-  providers: [{provide: APP_GUARD, useClass: AuthGuard}],
+  providers: [{ provide: APP_GUARD, useClass: AuthGuard }],
 })
 export class AppModule {}
