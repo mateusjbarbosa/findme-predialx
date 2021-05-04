@@ -28,6 +28,7 @@ const authService = (context) => {
 const verifySession = async (context) => {
   const auth = authService(context);
   const hasActiveSession = await auth.hasActiveSession();
+  const currentPath = context.resolvedUrl;
 
   if (hasActiveSession) {
     const session = await auth.getSession();
@@ -48,14 +49,21 @@ const verifySession = async (context) => {
     };
   }
 
-  return {
-    props: {
-      allowedRoutes: [
-        { slug: '/', name: 'home' },
-        { slug: '/login', name: 'entrar 🔒' },
-      ],
-    },
-  };
+  if ((currentPath !== '/') && (currentPath !== '/login')) {
+    if (context.res) {
+      context.res.writeHead(307, { Location: '/login' });
+      context.res.end();
+    }
+  } else {
+    return {
+      props: {
+        allowedRoutes: [
+          { slug: '/', name: 'home' },
+          { slug: '/login', name: 'entrar 🔒' },
+        ],
+      },
+    };
+  }
 };
 
 export { authService, verifySession };
