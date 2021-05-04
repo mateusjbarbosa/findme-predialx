@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import useForm from '../hooks';
 
-import loginService from './service';
+import loginService from '../../../services/Login';
 
 const loginSchema = yup.object().shape({
   username: yup.string().required('O apelido é obrigatório'),
