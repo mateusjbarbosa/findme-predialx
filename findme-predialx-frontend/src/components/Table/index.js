@@ -13,6 +13,7 @@ export default function Table({ tableHeaders, content }) {
                   {/* eslint-disable-next-line react/prop-types */}
                   {tableHeaders.map((header) => (
                     <th
+                      key={header}
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                     >
@@ -24,7 +25,7 @@ export default function Table({ tableHeaders, content }) {
               <tbody className="bg-white divide-y">
                 {/* eslint-disable-next-line react/prop-types */}
                 {content.map((td) => (
-                  <tr>
+                  <tr key={td.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-900">{td.id}</div>
                     </td>
