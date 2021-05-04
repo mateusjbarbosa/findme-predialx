@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Param, Post } from '@nestjs/common';
 
 import { Public } from 'nestjs-keycloak-admin';
 
@@ -25,6 +25,7 @@ export class AuthController {
   }
 
   @Post('/logout/:userId')
+  @HttpCode(204)
   async logout(@Param('userId') userId: string) {
     return await this.authService.logout(userId);
   }

@@ -2,11 +2,13 @@ import React from 'react';
 
 import Header from '../Header';
 
-// eslint-disable-next-line react/prop-types
-export default function PageWrapper({ children }) {
+export default function PageWrapper({
+  // eslint-disable-next-line react/prop-types
+  allowedRoutes, username, token, children,
+}) {
   return (
     <>
-      <Header />
+      <Header items={allowedRoutes} username={username} token={token} />
       {children}
     </>
   );

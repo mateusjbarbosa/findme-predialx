@@ -2,13 +2,15 @@ import React from 'react';
 
 import PageWrapper from '../src/components/wrappers/PageWrapper';
 
+import LoginForm from '../src/components/Forms/Login';
+
 import { verifySession } from '../src/services/Auth';
 
 // eslint-disable-next-line react/prop-types
-export default function Map({ allowedRoutes, username, token }) {
+export default function LoginPage({ allowedRoutes, username }) {
   return (
-    <PageWrapper allowedRoutes={allowedRoutes} username={username} token={token}>
-      <h2>map</h2>
+    <PageWrapper allowedRoutes={allowedRoutes} username={username}>
+      <LoginForm />
     </PageWrapper>
   );
 }
