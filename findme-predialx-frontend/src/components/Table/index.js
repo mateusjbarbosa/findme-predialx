@@ -27,13 +27,18 @@ export default function Table({ tableHeaders, content }) {
                 {content.map((td) => (
                   <tr key={td.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{td.id}</div>
+                      <div className="text-sm text-gray-400">{td.id}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{td.name}</div>
+                      <p className="text-sm text-gray-900">
+                        {td.name}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {td.username}
+                      </p>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{td.email}</div>
+                      <div className="text-sm">{td.email}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex">
