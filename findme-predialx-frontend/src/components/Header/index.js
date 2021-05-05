@@ -2,6 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import loginService from '../../services/Login';
 
 // eslint-disable-next-line react/prop-types
@@ -33,7 +34,7 @@ export default function Header({ items, username, token }) {
           {username !== undefined
             ? (
               <li className={userLoggedStyle}>
-                Olá,
+                olá,
                 {' '}
                 {username}
                 {' '}
@@ -51,7 +52,7 @@ export default function Header({ items, username, token }) {
                 document.location.reload();
               }}
             >
-              Sair
+              sair
             </button>
           ) : <></>}
       </nav>

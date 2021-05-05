@@ -27,22 +27,27 @@ export default function Table({ tableHeaders, content }) {
                 {content.map((td) => (
                   <tr key={td.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{td.id}</div>
+                      <p className="text-sm text-gray-400">{td.id}</p>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{td.name}</div>
+                      <p className="text-sm text-gray-900">
+                        {td.name}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {td.username}
+                      </p>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">{td.email}</div>
+                      <p className="text-sm">{td.email}</p>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex">
-                        <div className="py-2 px-4 shadow-inner rounded-md bg-gray-200 text-center text-sm font-medium text-gray-900">
+                        <button type="button" className="py-2 px-4 shadow-inner rounded-md bg-gray-200 text-center text-sm font-medium text-gray-900">
                           editar
-                        </div>
-                        <div className="mx-4 py-2 px-4 shadow-inner rounded-md text-center text-sm bg-red-500 text-white">
+                        </button>
+                        <button type="button" className="mx-4 py-2 px-4 shadow-inner rounded-md text-center text-sm bg-red-500 text-white">
                           excluir
-                        </div>
+                        </button>
                       </div>
                     </td>
                   </tr>

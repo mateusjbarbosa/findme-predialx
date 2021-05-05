@@ -19,7 +19,7 @@ export class DatabaseService {
     const database = await this.getConnection();
 
     const result = await database.query(
-      `SELECT ue.id, ue.first_name, ue.last_name, ue.email
+      `SELECT ue.id, ue.first_name, ue.last_name, ue.username, ue.email
         FROM user_entity ue
         WHERE ue.realm_id = 'findme-predialx'
           AND ue.email IS NOT NULL;`,
@@ -34,7 +34,7 @@ export class DatabaseService {
     const database = await this.getConnection();
 
     const result = await database.query(
-      `SELECT ue.id, ue.first_name, ue.last_name, ue.email
+      `SELECT ue.id, ue.first_name, ue.last_name, ue.username, ue.email
         FROM keycloak_role kr
           JOIN user_role_mapping rm ON kr.id = rm.role_id
           JOIN user_entity ue ON rm.user_id = ue.id
