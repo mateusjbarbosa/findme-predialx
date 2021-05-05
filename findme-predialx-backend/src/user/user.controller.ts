@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 
 import { Public } from 'nestjs-keycloak-admin';
 
@@ -16,7 +16,7 @@ export class UserController {
   }
 
   @Get('/')
-  getUsers() {
-    return this.userService.getUsers();
+  getUsers(@Query() { role }) {
+    return this.userService.getUsers(role);
   }
 }

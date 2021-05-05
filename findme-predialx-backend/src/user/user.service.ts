@@ -2,9 +2,14 @@ import { Injectable } from '@nestjs/common';
 
 import { KeycloakService } from 'nestjs-keycloak-admin';
 
+import { DatabaseService } from 'src/database/database.service';
+
 @Injectable()
 export class UserService {
-  constructor(private keycloakService: KeycloakService) {}
+  constructor(
+    private keycloakService: KeycloakService,
+    private databaseService: DatabaseService,
+  ) {}
 
   private async getRoles() {
     const remoteRoles = this.keycloakService.client.roles;
@@ -43,11 +48,11 @@ export class UserService {
     return createdUser.id;
   }
 
-  async getUsers() {
-    const remoteUser = this.keycloakService.client.users;
+  async getUsers(role: string) {
+    if (role) {
+      return await this.databaseService.getUsersByRole(role);
+    }
 
-    const result = await remoteUser.find();
-
-    return result;
+    return await this.databaseService.getAllUsers();
   }
 }
