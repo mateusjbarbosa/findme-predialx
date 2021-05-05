@@ -10,9 +10,11 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Post('/')
-  @Public()
   createUser(@Body() body: User) {
-    return this.userService.createUser({ ...body, password: body.password });
+    return this.userService.createUser({
+      ...body,
+      password: body.password,
+    });
   }
 
   @Get('/')

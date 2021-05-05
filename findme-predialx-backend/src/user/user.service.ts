@@ -25,7 +25,7 @@ export class UserService {
     email: string;
     password: string;
     role: string;
-  }): Promise<string> {
+  }) {
     const remoteUser = this.keycloakService.client.users;
     const remoteRoles = await this.getRoles();
 
@@ -45,7 +45,7 @@ export class UserService {
       roles: [{ id: userRole.id, name: userRole.name }],
     });
 
-    return createdUser.id;
+    return { userId: createdUser.id };
   }
 
   async getUsers(role: string) {
