@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PageWrapper from '../src/components/wrappers/PageWrapper';
 import Table from '../src/components/Table';
 
 import { verifySession } from '../src/services/Auth';
 
+import userService from '../src/services/User';
+
 // eslint-disable-next-line react/prop-types
 export default function Contributors({ allowedRoutes, username, token }) {
+  const [content, setContent] = useState([]);
+
   const tableHeaders = ['id', 'nome', 'e-mail', 'ações'];
 
-  const content = [
-    { id: '1231-5678-90', name: 'Jane Cooper', email: 'jane.cooper@mail.com' },
-    { id: '1232-5678-90', name: 'Jane Cooper', email: 'jane.cooper@mail.com' },
-    { id: '1233-5678-90', name: 'Jane Cooper', email: 'jane.cooper@mail.com' },
-  ];
+  useEffect(async () => {
+    const getUsers = await userService.getUsersByRole(token, 'contributor');
+
+    const listUsers = [];
+
+    getUsers.forEach((user) => {
+      const parsedUser = {
+        id: user.id,
+        name: `${user.first_name} ${user.last_name}`,
+        email: user.email,
+        username: user.username,
+      };
+
+      listUsers.push(parsedUser);
+    });
+
+    setContent(listUsers);
+  }, []);
 
   return (
     <PageWrapper allowedRoutes={allowedRoutes} username={username} token={token}>
