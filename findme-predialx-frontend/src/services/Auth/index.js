@@ -2,7 +2,7 @@ import { parseCookies } from 'nookies';
 
 import jwt from 'jsonwebtoken';
 
-import { LOGIN_APP_TOKEN } from '../Login';
+import { LOGIN_APP_TOKEN } from '../Infra';
 
 const authService = (context) => {
   const cookies = parseCookies(context);
@@ -54,16 +54,16 @@ const verifySession = async (context) => {
       context.res.writeHead(307, { Location: '/login' });
       context.res.end();
     }
-  } else {
-    return {
-      props: {
-        allowedRoutes: [
-          { slug: '/', name: 'home' },
-          { slug: '/login', name: 'entrar 🔒' },
-        ],
-      },
-    };
   }
+
+  return {
+    props: {
+      allowedRoutes: [
+        { slug: '/', name: 'home' },
+        { slug: '/login', name: 'entrar 🔒' },
+      ],
+    },
+  };
 };
 
 export { authService, verifySession };
