@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import PageWrapper from '../src/components/wrappers/PageWrapper';
-import Table from '../src/components/Table';
+import TableUsers from '../src/components/Table/tableUsers';
 
 import { FormClientRegister } from '../src/components/Forms/Register';
 
@@ -42,7 +42,13 @@ export default function Clients({ allowedRoutes, username, token }) {
     >
       <div className="flex px-16 pt-16 justify-between">
         <h2 className="font-bold text-3xl">Clientes</h2>
-        <Button type="button" variant="primary" onClick={() => setRegister(!register)}>novo cliente</Button>
+        <Button
+          type="button"
+          variant="primary"
+          onClick={() => setRegister(!register)}
+        >
+          novo cliente
+        </Button>
       </div>
       {register ? (
         <FormClientRegister
@@ -54,7 +60,7 @@ export default function Clients({ allowedRoutes, username, token }) {
       ) : (
         <div />
       )}
-      <Table tableHeaders={tableHeaders} content={content} />
+      <TableUsers tableHeaders={tableHeaders} content={content} />
     </PageWrapper>
   );
 }

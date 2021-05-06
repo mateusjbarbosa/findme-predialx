@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import PageWrapper from '../src/components/wrappers/PageWrapper';
-import Table from '../src/components/Table';
+import TableUsers from '../src/components/Table/tableUsers';
 
 import { FormContributorRegister } from '../src/components/Forms/Register';
 
@@ -44,7 +44,13 @@ export default function Contributors({ allowedRoutes, username, token }) {
     >
       <div className="flex px-16 pt-16 justify-between">
         <h2 className="font-bold text-3xl">Colaboradores</h2>
-        <Button type="button" variant="primary" onClick={() => setRegister(!register)}>novo colaborador</Button>
+        <Button
+          type="button"
+          variant="primary"
+          onClick={() => setRegister(!register)}
+        >
+          novo colaborador
+        </Button>
       </div>
       {register ? (
         <FormContributorRegister
@@ -56,7 +62,7 @@ export default function Contributors({ allowedRoutes, username, token }) {
       ) : (
         <div />
       )}
-      <Table tableHeaders={tableHeaders} content={content} />
+      <TableUsers tableHeaders={tableHeaders} content={content} />
     </PageWrapper>
   );
 }
