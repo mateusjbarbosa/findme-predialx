@@ -3,19 +3,21 @@ import React, { useEffect, useState } from 'react';
 import PageWrapper from '../src/components/wrappers/PageWrapper';
 import Table from '../src/components/Table';
 
-import { verifySession } from '../src/services/Auth';
+import { FormClientRegister } from '../src/components/Forms/Register';
 
+import { verifySession } from '../src/services/Auth';
 import userService from '../src/services/User';
+import Button from '../src/components/commons/Button';
 
 // eslint-disable-next-line react/prop-types
 export default function Clients({ allowedRoutes, username, token }) {
   const [content, setContent] = useState([]);
+  const [register, setRegister] = useState(false);
 
   const tableHeaders = ['id', 'nome', 'e-mail', 'ações'];
 
   useEffect(async () => {
     const getUsers = await userService.getUsersByRole(token, 'client');
-
     const listUsers = [];
 
     getUsers.forEach((user) => {
@@ -33,11 +35,25 @@ export default function Clients({ allowedRoutes, username, token }) {
   }, []);
 
   return (
-    <PageWrapper allowedRoutes={allowedRoutes} username={username} token={token}>
+    <PageWrapper
+      allowedRoutes={allowedRoutes}
+      username={username}
+      token={token}
+    >
       <div className="flex px-16 pt-16 justify-between">
         <h2 className="font-bold text-3xl">Clientes</h2>
-        <button type="button" className="py-2 px-4 shadow-inner rounded-md text-center text-base bg-red-500 text-white font-bold">novo cliente</button>
+        <Button type="button" variant="primary" onClick={() => setRegister(!register)}>novo cliente</Button>
       </div>
+      {register ? (
+        <FormClientRegister
+          sucessAlert="cliente cadastrado com sucesso!"
+          errorAlert="cliente não cadastrado!"
+          userRole="client"
+          token={token}
+        />
+      ) : (
+        <div />
+      )}
       <Table tableHeaders={tableHeaders} content={content} />
     </PageWrapper>
   );
