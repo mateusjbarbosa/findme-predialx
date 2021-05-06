@@ -14,8 +14,20 @@ export class ServiceOrderService {
     private userService: UserService,
   ) {}
 
-  createServiceOrder(serviceOrder: ServiceOrder): Promise<ServiceOrder> {
-    return this.serviceOrderRepository.save(serviceOrder);
+  createServiceOrder(serviceOrder: {
+    date: string;
+    clientId: string;
+    contributorId: string;
+    description: string;
+  }): Promise<ServiceOrder> {
+    const so = new ServiceOrder(
+      serviceOrder.date,
+      serviceOrder.clientId,
+      serviceOrder.contributorId,
+      serviceOrder.description,
+    );
+
+    return this.serviceOrderRepository.save(so);
   }
 
   async getServiceOrders() {
@@ -23,9 +35,13 @@ export class ServiceOrderService {
 
     const parsedServiceOrders = [];
 
-    const promises = allServiceOrders.map(async serviceOrder => {
-      const clientName = await this.userService.getUserById(serviceOrder.clientId);
-      const contributorName = await this.userService.getUserById(serviceOrder.contributorId);
+    const promises = allServiceOrders.map(async (serviceOrder) => {
+      const clientName = await this.userService.getUserById(
+        serviceOrder.clientId,
+      );
+      const contributorName = await this.userService.getUserById(
+        serviceOrder.contributorId,
+      );
 
       parsedServiceOrders.push({
         ...serviceOrder,
