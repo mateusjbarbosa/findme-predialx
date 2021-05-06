@@ -15,6 +15,21 @@ export class DatabaseService {
     return await this.pool.connect();
   }
 
+  async getUserById(id: string) {
+    const database = await this.getConnection();
+
+    const result = await database.query(
+      `SELECT ue.first_name, ue.last_name
+        FROM user_entity ue
+        WHERE ue.realm_id = 'findme-predialx'
+          AND ue.id = '${id}';`,
+    );
+
+    database.release();
+
+    return `${result.rows[0]['first_name']} ${result.rows[0]['last_name']}`;
+  }
+
   async getAllUsers() {
     const database = await this.getConnection();
 
