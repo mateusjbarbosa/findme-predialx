@@ -7,7 +7,7 @@ export const DropdownList = ({ data, initValue, onChange }) => {
     <ModalSelector
       data={data}
       initValue={initValue}
-      onChange={(value) => onChange(value.label)}
+      onChange={(value) => onChange({ key: value.key, label: value.label })}
       cancelText="cancelar escolha"
       cancelStyle={{
         padding: 10,

@@ -21,7 +21,9 @@ const Form = () => {
   const [isLoading, setLoading] = useState(true);
 
   const token =
-    'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjU0VNRENLRnc4QkFlcERadEd6cWRLMlg1VUJPUURTdUY1NUpuTk94V3lrIn0.eyJleHAiOjE2MjAzNjcwMDksImlhdCI6MTYyMDMzMTAwOSwianRpIjoiODY1ZjM5ZTctNzljMC00NDViLWIzODAtYThlYWMyNDYyNTk5IiwiaXNzIjoiaHR0cDovL2hvc3QuZG9ja2VyLmludGVybmFsOjgwODAvYXV0aC9yZWFsbXMvZmluZG1lLXByZWRpYWx4IiwiYXVkIjpbInJlYWxtLW1hbmFnZW1lbnQiLCJhY2NvdW50Il0sInN1YiI6IjBiNjU1MjE1LTYyYjYtNDU2Ny1hODhjLTQ0Njk4YmQ4OTIxMiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiNjA0MGNjYjItNDYxYi00MWI4LWFkZTMtZmViODI3MGQzMWZmIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjMwMDAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImFkbWluIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsicmVhbG0tbWFuYWdlbWVudCI6eyJyb2xlcyI6WyJtYW5hZ2UtcmVhbG0iLCJtYW5hZ2UtdXNlcnMiXX0sImJhY2tlbmQiOnsicm9sZXMiOlsiYWRtaW4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFkbWluIEZpbmRNZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiZ2l2ZW5fbmFtZSI6IkFkbWluIiwiZmFtaWx5X25hbWUiOiJGaW5kTWUiLCJlbWFpbCI6ImFkbWluQGZpbmRtZS5pZCJ9.mKko4nlhlmYfldruzobaaxdt2zYmRUJkOzu_hdlCdmG4u9kneuGKtidfTa_jC_D6bOY4JXYfrB4P9pG72I1opeIhm2UJhqq7eE8b13KnrmCCRayv72L-xpIvu2gvISEturEdPCXV0pK2-cKZ1LaEl-op7uWu9N6j293JpEQq5t-i-KCPxi38mERjfXysODqcCgr_0M0zNuCPoMl72PayRLNZ_LP-4wME0nBZceq8awFZWBRgRQtog36fMiwYMBjKa0Ie5m1vdvFjZFGiX1-LCOSttd9OfrDH8o2TgSh9ArojzNK7S3uKLtXPsrI2BFDyI7FAEPYRPwXcnaz3dlNtgA';
+    'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjU0VNRENLRnc4QkFlcERadEd6cWRLMlg1VUJPUURTdUY1NUpuTk94V3lrIn0.eyJleHAiOjE2MjAzNzg2MTgsImlhdCI6MTYyMDM0MjYxOCwianRpIjoiYjA2NWQxMTAtZTA3NS00ZjRlLTg4OWUtNTIwN2E3N2RmMjRlIiwiaXNzIjoiaHR0cDovL2hvc3QuZG9ja2VyLmludGVybmFsOjgwODAvYXV0aC9yZWFsbXMvZmluZG1lLXByZWRpYWx4IiwiYXVkIjpbInJlYWxtLW1hbmFnZW1lbnQiLCJhY2NvdW50Il0sInN1YiI6IjBiNjU1MjE1LTYyYjYtNDU2Ny1hODhjLTQ0Njk4YmQ4OTIxMiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiNGUwNDRiZjItNzE5NC00OGViLTgyYWEtMThiNTgzODM3MTkzIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjMwMDAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImFkbWluIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsicmVhbG0tbWFuYWdlbWVudCI6eyJyb2xlcyI6WyJtYW5hZ2UtcmVhbG0iLCJtYW5hZ2UtdXNlcnMiXX0sImJhY2tlbmQiOnsicm9sZXMiOlsiYWRtaW4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIHByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFkbWluIEZpbmRNZSIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiZ2l2ZW5fbmFtZSI6IkFkbWluIiwiZmFtaWx5X25hbWUiOiJGaW5kTWUiLCJlbWFpbCI6ImFkbWluQGZpbmRtZS5pZCJ9.jLGxtyET3uZ_lQJ1R8wfMUupaPK42PkXGiSPbBM5hMoPoXwArWkNi4uBtUdBDwfxGvfraM6jcIE4r0H7jUxDMCS6Z3tm3eR6iNqx2MwipPUjNgQYWHijED0PMCuy0zSZme-h9Qo8eZgjBKheS-hpYy9tFjXbolrzWHcYPhJHaVKpciOa2Y_IyRedxq2wD7t0KnhBzW4davzwBaIA368AdQMZ2EEublQ4SriiTfe0-PQFAXlpMLNFC7gNY05DecMRCEFFPSRUv2xGcBAqTyiABFiHyZcNoQB6GB8x_Z_rsHuv_3aeTfYXJllZssIMLgVAbxlNQiQJ1Go7hgeAhUl4LQ';
+  const contributorId = '8bc1fedb-d59d-42d5-8461-dd9586de75a9';
+
   useEffect(() => {
     const clientsList = [];
 
@@ -59,7 +61,7 @@ const Form = () => {
             <DropdownList
               data={clients}
               initValue={
-                selectedClient ? selectedClient : 'selecione um cliente'
+                selectedClient ? selectedClient.label : 'selecione um cliente'
               }
               onChange={setSelectedClient}
             />
@@ -82,7 +84,8 @@ const Form = () => {
               onPress={() => {
                 serviceOrderService.sendServiceOrder(token, {
                   date,
-                  client: selectedClient,
+                  clientId: selectedClient.key,
+                  contributorId,
                   description: serviceOrderDescription,
                 });
               }}
