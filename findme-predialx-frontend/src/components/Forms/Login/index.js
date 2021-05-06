@@ -32,7 +32,7 @@ export default function LoginForm() {
           password: values.password,
         })
         .then(() => {
-          router.push('/');
+          router.push('/clients');
         })
         .catch((err) => {
           console.error(err);
