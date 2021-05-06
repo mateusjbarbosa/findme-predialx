@@ -1,21 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
+import {
+  Keyboard,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  View,
+} from 'react-native';
+
+import Header from './src/components/Header';
+import ServiceOrderFormRegister from './src/components/Form/Register/ServiceOrder';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Pressable
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <View style={styles.header}>
+        <Header />
+      </View>
+      <ScrollView style={styles.box}>
+        <ServiceOrderFormRegister />
+      </ScrollView>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  header: {
+    height: '15%',
+  },
+  box: {
+    height: '85%',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
   },
 });
