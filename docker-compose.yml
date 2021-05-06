@@ -76,23 +76,6 @@ services:
       - keycloak
       - backend
 
-  mobile:
-    build: .docker/mobile
-    container_name: mobile
-    ports:
-      - 3002:19000
-      - 3003:19002
-      - 3004:19006
-    volumes:
-      - ./findme-predialx-mobile:/home/node/app
-    working_dir: /home/node/app
-    command: yarn web
-    networks:
-      - network
-    depends_on:
-      - keycloak
-      - backend
-
 networks:
   network:
     driver: bridge
