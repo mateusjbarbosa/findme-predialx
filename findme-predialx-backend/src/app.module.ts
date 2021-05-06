@@ -7,8 +7,13 @@ import KeycloakModule, {
   ResourceGuard,
 } from 'nestjs-keycloak-admin';
 
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { ServiceOrder } from './service-order/service-order.entity';
+
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ServiceOrderModule } from './service-order/service-order.module';
 
 @Module({
   imports: [
@@ -24,8 +29,19 @@ import { AuthModule } from './auth/auth.module';
         };
       },
     }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.TYPEORM_DATABASE_HOST,
+      port: parseInt(process.env.TYPEORM_DATABASE_PORT),
+      username: process.env.TYPEORM_DATABASE_USERNAME,
+      password: process.env.TYPEORM_DATABASE_PASSWORD,
+      database: process.env.TYPEORM_DATABASE_DATABASE,
+      entities: [ServiceOrder],
+      synchronize: true,
+    }),
     UserModule,
     AuthModule,
+    ServiceOrderModule,
   ],
   controllers: [],
   providers: [
