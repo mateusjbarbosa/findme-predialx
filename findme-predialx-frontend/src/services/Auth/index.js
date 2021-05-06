@@ -37,11 +37,11 @@ const verifySession = async (context) => {
     return {
       props: {
         allowedRoutes: [
-          { slug: '/', name: 'home' },
+          // { slug: '/', name: 'home' },
           { slug: '/clients', name: 'clientes' },
           { slug: '/contributors', name: 'colaboradores' },
           { slug: '/service-orders', name: 'ordens de serviço' },
-          { slug: '/map', name: 'mapa' },
+          // { slug: '/map', name: 'mapa' },
         ],
         username: session.username,
         token,
@@ -49,7 +49,7 @@ const verifySession = async (context) => {
     };
   }
 
-  if ((currentPath !== '/') && (currentPath !== '/login')) {
+  if (/* (currentPath !== '/') && */ currentPath !== '/login') {
     if (context.res) {
       context.res.writeHead(307, { Location: '/login' });
       context.res.end();
@@ -59,7 +59,7 @@ const verifySession = async (context) => {
   return {
     props: {
       allowedRoutes: [
-        { slug: '/', name: 'home' },
+        // { slug: '/', name: 'home' },
         { slug: '/login', name: 'entrar 🔒' },
       ],
     },
