@@ -55,4 +55,8 @@ export class UserService {
 
     return await this.databaseService.getAllUsers();
   }
+
+  async getUserById(id: string) {
+    return this.databaseService.getUserById(id);
+  }
 }

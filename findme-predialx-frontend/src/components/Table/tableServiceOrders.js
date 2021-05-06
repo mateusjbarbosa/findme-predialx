@@ -1,7 +1,7 @@
 import React from 'react';
 
 // eslint-disable-next-line react/prop-types
-export default function Table({ tableHeaders, content }) {
+export default function TableServiceOrders({ tableHeaders, content }) {
   return (
     <div className="flex flex-col px-16 pt-8">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -30,25 +30,22 @@ export default function Table({ tableHeaders, content }) {
                       <p className="text-sm text-gray-400">{td.id}</p>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
+                      <p className="text-sm text-gray-900">{td.date}</p>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <p className="text-sm text-gray-900">{td.clientName}</p>
+                      <p className="text-sm text-gray-500">{td.clientId}</p>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
                       <p className="text-sm text-gray-900">
-                        {td.name}
+                        {td.contributorName}
                       </p>
                       <p className="text-sm text-gray-500">
-                        {td.username}
+                        {td.contributorId}
                       </p>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <p className="text-sm">{td.email}</p>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex">
-                        <button type="button" className="py-2 px-4 shadow-inner rounded-md bg-gray-200 text-center text-sm font-medium text-gray-900">
-                          editar
-                        </button>
-                        <button type="button" className="mx-4 py-2 px-4 shadow-inner rounded-md text-center text-sm bg-red-500 text-white">
-                          excluir
-                        </button>
-                      </div>
+                      <p className="text-sm">{td.description}</p>
                     </td>
                   </tr>
                 ))}
