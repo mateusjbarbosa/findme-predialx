@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react';
 import PageWrapper from '../src/components/wrappers/PageWrapper';
 import Table from '../src/components/Table';
 
+import { FormContributorRegister } from '../src/components/Forms/Register';
+
 import { verifySession } from '../src/services/Auth';
 
 import userService from '../src/services/User';
+import Button from '../src/components/commons/Button';
 
 // eslint-disable-next-line react/prop-types
 export default function Contributors({ allowedRoutes, username, token }) {
   const [content, setContent] = useState([]);
+  const [register, setRegister] = useState(false);
 
   const tableHeaders = ['id', 'nome', 'e-mail', 'ações'];
 
@@ -33,11 +37,25 @@ export default function Contributors({ allowedRoutes, username, token }) {
   }, []);
 
   return (
-    <PageWrapper allowedRoutes={allowedRoutes} username={username} token={token}>
+    <PageWrapper
+      allowedRoutes={allowedRoutes}
+      username={username}
+      token={token}
+    >
       <div className="flex px-16 pt-16 justify-between">
         <h2 className="font-bold text-3xl">Colaboradores</h2>
-        <button type="button" className="py-2 px-4 shadow-inner rounded-md text-center text-base bg-red-500 text-white font-bold">novo colaborador</button>
+        <Button type="button" variant="primary" onClick={() => setRegister(!register)}>novo colaborador</Button>
       </div>
+      {register ? (
+        <FormContributorRegister
+          sucessAlert="colaborador cadastrado com sucesso!"
+          errorAlert="colaborador não cadastrado!"
+          userRole="contributor"
+          token={token}
+        />
+      ) : (
+        <div />
+      )}
       <Table tableHeaders={tableHeaders} content={content} />
     </PageWrapper>
   );
