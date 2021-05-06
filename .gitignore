@@ -1,3 +1,4 @@
-.docker
+.docker/pgadmin-data
+.docker/postgres-data
 
 .DS_Store
