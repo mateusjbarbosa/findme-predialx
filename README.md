@@ -65,3 +65,21 @@ O navegador abrirá e você poderá ler um QR Code - com o aplicativo Expo Go, b
 - Aplicação Mobile: via Expo Go no dispositivo mobile, leitura do QR Code em [localhost:19000](http://localhost:19000)
 - Keycloak: [localhost:8080](http://localhost:8080)
 - PGAdmin: [localhost:8081](http://localhost:8081)
+
+## Recursos utilizados
+
+- API
+  - Node
+  - Nest.js
+  - Postgres com TypeORM
+  - Autenticação com Keycloak
+- Web
+  - React
+  - Next.js
+  - TailwindCSS
+- Mobile
+  - React Native
+
+## Observações
+
+- A aplicação já vem com um usuário admin cadastrado. Suas credenciais de acesso são `admin` para usuário e `admin123` para senha. Esse usuário pode ser utilizado tanto na aplicação web quanto mobile. Dessa forma, ao acessar a aplicação web, não há necessidade pontual de criar um novo usuário, basta acessar a página de login e inserir as credenciais
