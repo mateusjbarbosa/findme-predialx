@@ -18,10 +18,7 @@ const registerSchema = yup.object().shape({
 
 export default function FormContributorRegister({
   // eslint-disable-next-line react/prop-types
-  sucessAlert,
-  errorAlert,
-  userRole,
-  token,
+  sucessAlert, errorAlert, userRole, token,
 }) {
   const initialValues = {
     firstName: '',
