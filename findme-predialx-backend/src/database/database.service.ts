@@ -62,4 +62,19 @@ export class DatabaseService {
 
     return result.rows;
   }
+
+  async getUserIdByEmail(email: string) {
+    const database = await this.getConnection();
+
+    const result = await database.query(
+      `SELECT ue.id
+        FROM user_entity ue
+        WHERE ue.realm_id = 'findme-predialx'
+          AND ue.email = '${email}';`,
+    );
+
+    database.release();
+
+    return result.rows;
+  }
 }

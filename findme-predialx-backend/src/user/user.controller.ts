@@ -18,7 +18,7 @@ export class UserController {
   }
 
   @Get('/')
-  getUsers(@Query() { role }) {
-    return this.userService.getUsers(role);
+  getUsers(@Query() query) {
+    return this.userService.getUsers(query.role, query.email);
   }
 }

@@ -1,39 +1,87 @@
 import React from 'react';
 
-import {
-  Keyboard,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { Keyboard, Pressable, ScrollView, StyleSheet } from 'react-native';
 
-import Header from './src/components/Header';
-import ServiceOrderFormRegister from './src/components/Form/Register/ServiceOrder';
+import 'react-native-gesture-handler';
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import LoginForm from './src/components/Form/Login';
+import ServiceOrderFormRegister from './src/components/Form/ServiceOrder';
+
+const LoginScreen = ({ navigation }) => {
   return (
     <Pressable
       onPress={() => {
         Keyboard.dismiss();
       }}
     >
-      <View style={styles.header}>
-        <Header />
-      </View>
       <ScrollView style={styles.box}>
-        <ServiceOrderFormRegister />
+        <LoginForm navigation={navigation} />
       </ScrollView>
     </Pressable>
+  );
+};
+
+const ServiceOrderFormScreen = ({ route }) => {
+  const { token, email } = route.params;
+
+  return (
+    <Pressable
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <ScrollView style={styles.box}>
+        <ServiceOrderFormRegister token={token} contributorEmail={email} />
+      </ScrollView>
+    </Pressable>
+  );
+};
+
+export default function App() {
+  const Stack = createStackNavigator();
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{
+            title: 'findme • predialx',
+            headerStyle: {
+              backgroundColor: 'rgba(239, 68, 68, 1)',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="ServiceOrderFormScreen"
+          component={ServiceOrderFormScreen}
+          options={{
+            title: 'findme • predialx',
+            headerStyle: {
+              backgroundColor: 'rgba(239, 68, 68, 1)',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    height: '15%',
-  },
   box: {
-    height: '85%',
+    height: '100%',
     paddingHorizontal: 15,
     paddingVertical: 10,
   },
