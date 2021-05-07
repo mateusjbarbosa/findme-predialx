@@ -57,7 +57,7 @@ services:
     volumes:
       - ./findme-predialx-backend:/home/node/app
     working_dir: /home/node/app
-    command: yarn start:dev
+    command: /bin/sh -c "yarn install && yarn start:dev"
     networks:
       - network
     depends_on:
@@ -71,7 +71,7 @@ services:
     volumes:
       - ./findme-predialx-frontend:/home/node/app
     working_dir: /home/node/app
-    command: yarn dev
+    command: /bin/sh -c "yarn install && yarn dev"
     networks:
       - network
     depends_on:
