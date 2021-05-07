@@ -20,6 +20,14 @@ const userService = {
       },
     }).then((response) => response);
   },
+  async createAdminUser(data) {
+    return HttpClient(`${BACKEND_URL}/users/admin`, {
+      method: 'POST',
+      body: {
+        ...data,
+      },
+    }).then((response) => response);
+  },
 };
 
 export default userService;
