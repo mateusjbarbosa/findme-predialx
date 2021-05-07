@@ -29,8 +29,6 @@ export class UserService {
     const remoteUser = this.keycloakService.client.users;
     const remoteRoles = await this.getRoles();
 
-    console.log(data);
-
     const createdUser = await remoteUser.create({
       firstName: data.firstName,
       lastName: data.lastName,

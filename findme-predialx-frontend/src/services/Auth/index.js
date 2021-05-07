@@ -49,7 +49,7 @@ const verifySession = async (context) => {
     };
   }
 
-  if (/* (currentPath !== '/') && */ currentPath !== '/login') {
+  if (currentPath !== '/' && currentPath !== '/login') {
     if (context.res) {
       context.res.writeHead(307, { Location: '/login' });
       context.res.end();
