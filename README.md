@@ -35,13 +35,6 @@ ou (para caso não queira ver os logs)
 docker-compose up -d
 ```
 
-### Configuração do Keycloak
-
-- Após o docker subir todos os containeres, acesse `localhost:8080`, entre em `Administration Console` e insira as credenciais (usuário: `admin` e senha: `admin`)
-- Após logado, clique na opção `Import` no canto esquerdo da tela e depois em `select file`
-- Com o explorador de arquivos aberto pela página, navegue até a pasta **.docker/keycloak** na raiz deste projeto e selecione o arquivo `configuration.json`
-- Mantenha as configurações da forma que estão, alterando somente a última, de `fail` para `overwrite`
-
 ### Executando o aplicativo mobile
 
 Insira o comando abaixo para subir a aplicação mobile.
@@ -79,7 +72,3 @@ O navegador abrirá e você poderá ler um QR Code - com o aplicativo Expo Go, b
   - TailwindCSS
 - Mobile
   - React Native
-
-## Observações
-
-- A aplicação já vem com um usuário admin cadastrado. Suas credenciais de acesso são `admin` para usuário e `admin123` para senha. Esse usuário pode ser utilizado tanto na aplicação web quanto mobile. Dessa forma, ao acessar a aplicação web, não há necessidade pontual de criar um novo usuário, basta acessar a página de login e inserir as credenciais
