@@ -18,7 +18,10 @@ const registerSchema = yup.object().shape({
 
 export default function FormContributorRegister({
   // eslint-disable-next-line react/prop-types
-  sucessAlert, errorAlert, userRole, token,
+  sucessAlert,
+  errorAlert,
+  userRole,
+  token,
 }) {
   const initialValues = {
     firstName: '',
@@ -37,8 +40,11 @@ export default function FormContributorRegister({
           firstName: values.firstName,
           lastName: values.lastName,
           email: values.email,
-          username: `${values.firstName.replace(/ +/g, '').toLowerCase()}${values.lastName.replace(/ +/g, '')}`,
+          username: `${values.firstName
+            .replace(/ +/g, '')
+            .toLowerCase()}${values.lastName.replace(/ +/g, '')}`,
           role: userRole,
+          password: values.password,
         })
         .then(() => {
           console.log(sucessAlert);
@@ -112,11 +118,7 @@ export default function FormContributorRegister({
           />
         </div>
         <div className="flex items-end py-0.5">
-          <Button
-            type="submit"
-            variant="primary"
-            customStyle="mr-4"
-          >
+          <Button type="submit" variant="primary" customStyle="mr-4">
             adicionar
           </Button>
         </div>
