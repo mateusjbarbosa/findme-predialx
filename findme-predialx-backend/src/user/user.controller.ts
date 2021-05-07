@@ -17,6 +17,16 @@ export class UserController {
     });
   }
 
+  @Post('/admin')
+  @Public()
+  createAdminUser(@Body() body: User) {
+    return this.userService.createUser({
+      ...body,
+      password: body.password,
+      role: 'admin',
+    });
+  }
+
   @Get('/')
   getUsers(@Query() query) {
     return this.userService.getUsers(query.role, query.email);
