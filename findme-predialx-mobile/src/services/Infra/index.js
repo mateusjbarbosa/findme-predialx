@@ -1,5 +1,4 @@
 const BACKEND_URL = 'http://localhost:3000';
-const LOGIN_APP_TOKEN = 'LOGIN_APP_TOKEN';
 
 async function HttpClient(url, { headers, body, ...options }) {
   return fetch(url, {
@@ -19,4 +18,4 @@ async function HttpClient(url, { headers, body, ...options }) {
   });
 }
 
-export { HttpClient, BACKEND_URL, LOGIN_APP_TOKEN };
+export { HttpClient, BACKEND_URL };
