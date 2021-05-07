@@ -29,6 +29,8 @@ export class UserService {
     const remoteUser = this.keycloakService.client.users;
     const remoteRoles = await this.getRoles();
 
+    console.log(data);
+
     const createdUser = await remoteUser.create({
       firstName: data.firstName,
       lastName: data.lastName,
@@ -48,9 +50,13 @@ export class UserService {
     return { userId: createdUser.id };
   }
 
-  async getUsers(role: string) {
+  async getUsers(role: string, email: string) {
     if (role) {
       return await this.databaseService.getUsersByRole(role);
+    }
+
+    if (email) {
+      return await this.databaseService.getUserIdByEmail(email);
     }
 
     return await this.databaseService.getAllUsers();
